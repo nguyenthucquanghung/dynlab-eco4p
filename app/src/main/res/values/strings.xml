@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="login">Log in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="log_in">Login</string>
+    <string name="sign_up_an_account">Sign up an account</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="menu_nav_bar_profile">Profile</string>
+    <string name="menu_nav_bar_feed">Feed</string>
+    <string name="menu_nav_bar_location">Location</string>
+    <string name="jinny">Jinny</string>
+    <string name="date">13/01/2016</string>
+    <string name="hanoi">Hanoi</string>
+    <string name="studying_at_res">Studying at RES (description).</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="your_timeline">Your Timeline</string>
+    <string name="rosie">Graves</string>
+    <string name="add_story">Add story</string>
+    <string name="christina">Trundle</string>
+    <string name="susan">Gnar</string>
+    <string name="kaisa">Kaisa</string>
+    <string name="photos_videos">Photos/Videos</string>
+    <string name="location">location</string>
+    <string name="check_in">Check in</string>
+    <string name="what_s_on_your_mind">What\'s on your mind</string>
+    <string name="renekton">Renekton</string>
+    <string name="location_00_00">Dong Da High School - 13:30</string>
+
+
+</resources>
