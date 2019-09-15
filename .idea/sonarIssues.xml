@@ -68,6 +68,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/adapter/PostListAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/fragment/FeedFragment.java">
           <value>
             <set />
@@ -84,6 +89,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/model/ImageObject.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/model/PostObject.java">
           <value>
             <set />
           </value>
