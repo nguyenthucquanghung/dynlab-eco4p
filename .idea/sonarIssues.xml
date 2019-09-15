@@ -98,7 +98,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/model/User.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/utils/AutoFitGridLayoutManager.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/utils/Constant.java">
           <value>
             <set />
           </value>

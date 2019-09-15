@@ -11,10 +11,17 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import unicorn.hust.myapplication.R;
 import unicorn.hust.myapplication.model.PostObject;
+import unicorn.hust.myapplication.utils.Constant;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHolder> {
 
