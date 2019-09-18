@@ -20,11 +20,13 @@
                 android:src="@drawable/ic_back" />
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:id="@+id/iv_logout"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="2.5dp"
-                android:src="@drawable/ic_more_dots" />
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_power" />
         </RelativeLayout>
 
         <RelativeLayout

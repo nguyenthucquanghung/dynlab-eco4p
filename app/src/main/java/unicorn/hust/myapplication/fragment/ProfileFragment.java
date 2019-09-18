@@ -1,6 +1,9 @@
 package unicorn.hust.myapplication.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -22,6 +26,7 @@ import java.util.List;
 
 import unicorn.hust.myapplication.R;
 import unicorn.hust.myapplication.activity.LoginActivity;
+import unicorn.hust.myapplication.activity.MainActivity;
 import unicorn.hust.myapplication.adapter.ImageGridListAdapter;
 import unicorn.hust.myapplication.model.ImageObject;
 import unicorn.hust.myapplication.utils.AutoFitGridLayoutManager;
@@ -33,6 +38,7 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
     RecyclerView recyclerView;
     List<ImageObject> mImages = new ArrayList<>();
     TextView tvName;
+    ImageView ivLogout;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -45,14 +51,45 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
         tvName = view.findViewById(R.id.name);
+        ivLogout = view.findViewById(R.id.iv_logout);
+
         SharedPreferences sharedPreferences = getContext()
                 .getSharedPreferences(Constant.USER, getContext().MODE_PRIVATE);
 
         tvName.setText(sharedPreferences.getString(Constant.NAME, "Jinny"));
+
+        ivLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAlertDialog();
+            }
+        });
         setUpRecyclerView();
         return view;
     }
+    public void showAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("ECO4P");
+        builder.setMessage("Do you want to logout?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("Logout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                getActivity().finish();
+                startActivity(intent);
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
+    }
     private void setUpRecyclerView() {
 //         Mock data
         mImages.add(new ImageObject(R.drawable.img01));
