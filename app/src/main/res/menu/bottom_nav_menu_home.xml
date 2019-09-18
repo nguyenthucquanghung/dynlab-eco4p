@@ -15,6 +15,7 @@
         android:title="@string/menu_nav_bar_feed"
         app:showAsAction="ifRoom" />
 
+
     <item
         android:id="@+id/action_user"
         android:enabled="true"

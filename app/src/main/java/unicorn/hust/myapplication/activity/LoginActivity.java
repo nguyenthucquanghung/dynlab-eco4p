@@ -31,6 +31,10 @@ import unicorn.hust.myapplication.R;
 public class LoginActivity extends BaseActivity {
 
     private OkHttpClient client = new OkHttpClient();
+    Button btnLogin;
+    TextView tvRegister;
+    EditText edtUsername;
+    EditText edtPassword;
 
     @Override
     protected int getLayoutId() {
@@ -39,19 +43,30 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void setupUI() {
-        Button btnLogin = findViewById(R.id.btn_login);
-        TextView tvRegister = findViewById(R.id.tv_register);
-        final EditText edtUsername = findViewById(R.id.et_email);
-        final EditText edtPassword = findViewById(R.id.et_password);
+        findViewById();
 
         tvRegister.setText(Html.fromHtml("<u>Create an account</u>"));
-
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                LoginActivity.this.finish();
+                LoginActivity.this.startActivity(intent);
+            }
+        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validate(edtUsername.getText().toString(), edtPassword.getText().toString());
             }
         });
+    }
+
+    private void findViewById() {
+        btnLogin = findViewById(R.id.btn_login);
+        tvRegister = findViewById(R.id.tv_register);
+        edtUsername = findViewById(R.id.et_email);
+        edtPassword = findViewById(R.id.et_password);
     }
 
     private void validate(String username, String password) {
@@ -68,37 +83,47 @@ public class LoginActivity extends BaseActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-
                 LoginActivity.this.runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast.makeText(getBaseContext(), "Server error! Please login again!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(),
+                                "Server error! Please login again!", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                final Gson gson = new Gson();
-                User user = gson.fromJson(response.body().charStream(), User.class);
-                if (user.getType().equals("member")) {
-                    SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Constant.USER, LoginActivity.this.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(Constant.LOGIN, user.getUsername());
-                    editor.apply();
-
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    LoginActivity.this.finish();
-                    LoginActivity.this.startActivity(intent);
-                } else {
-                    LoginActivity.this.runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(getBaseContext(), "Login failed! Wrong password or this account doesn't exist.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }
+            public void onResponse(@NotNull Call call, @NotNull Response response)
+                    throws IOException {
+                checkResponse(response);
             }
 
         });
+    }
+
+    private void checkResponse(Response response) {
+        final Gson gson = new Gson();
+        final User user = gson.fromJson(response.body().charStream(), User.class);
+
+        if (user.getType().equals("member")) {
+            SharedPreferences sharedPreferences = LoginActivity.this
+                    .getSharedPreferences(Constant.USER, LoginActivity.this.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(Constant.USERNAME, user.getUsername());
+            editor.putString(Constant.NAME, user.getName());
+            editor.apply();
+
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            LoginActivity.this.finish();
+            LoginActivity.this.startActivity(intent);
+        } else {
+            LoginActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    Toast.makeText(getBaseContext(),
+                            user.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
     }
 }

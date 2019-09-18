@@ -1,6 +1,7 @@
 package unicorn.hust.myapplication.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,20 +13,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import unicorn.hust.myapplication.R;
+import unicorn.hust.myapplication.activity.LoginActivity;
 import unicorn.hust.myapplication.adapter.ImageGridListAdapter;
 import unicorn.hust.myapplication.model.ImageObject;
 import unicorn.hust.myapplication.utils.AutoFitGridLayoutManager;
+import unicorn.hust.myapplication.utils.Constant;
 
 public class ProfileFragment extends Fragment implements ImageGridListAdapter.ItemListener{
     private static final String TAG = "hehehehe";
 
     RecyclerView recyclerView;
     List<ImageObject> mImages = new ArrayList<>();
+    TextView tvName;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -37,7 +44,11 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
+        tvName = view.findViewById(R.id.name);
+        SharedPreferences sharedPreferences = getContext()
+                .getSharedPreferences(Constant.USER, getContext().MODE_PRIVATE);
 
+        tvName.setText(sharedPreferences.getString(Constant.NAME, "Jinny"));
         setUpRecyclerView();
         return view;
     }

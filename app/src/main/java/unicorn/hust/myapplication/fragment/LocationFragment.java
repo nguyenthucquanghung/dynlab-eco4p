@@ -21,8 +21,7 @@ import unicorn.hust.myapplication.R;
 import unicorn.hust.myapplication.utils.Constant;
 
 public class LocationFragment extends Fragment {
-    Button btnGet;
-    TextView tvResult;
+
 
     public LocationFragment() {
         // Required empty public constructor
@@ -33,8 +32,7 @@ public class LocationFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_location, container, false);
-        btnGet = view.findViewById(R.id.btn_get);
-        tvResult = view.findViewById(R.id.tv_result);
+
 
         return view;
     }

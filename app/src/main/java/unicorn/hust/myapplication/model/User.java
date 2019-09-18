@@ -22,7 +22,7 @@ public class User {
     private String email;
     @SerializedName("phoneNumber")
     @Expose
-    private Integer phoneNumber;
+    private String phoneNumber;
     @SerializedName("type")
     @Expose
     private String type;
@@ -58,7 +58,10 @@ public class User {
     private String imgProfile;
     @SerializedName("lv2password")
     @Expose
-    private Integer lv2password;
+    private String lv2password;
+    @SerializedName("dateOfBirth")
+    @Expose
+    private String dateOfBirth;
 
     /**
      * No args constructor for use in serialization
@@ -66,66 +69,7 @@ public class User {
     public User() {
     }
 
-    /**
-     * @param status
-     * @param trackingID
-     * @param verify
-     * @param block
-     * @param lv2password
-     * @param messenger
-     * @param type
-     * @param password
-     * @param username
-     * @param imgProfile
-     * @param phoneNumber
-     * @param email
-     * @param name
-     * @param age
-     * @param cookies
-     * @param follow
-     * @param ipAddress
-     */
-    public User(String username, String password, String name, Integer age, String email, Integer phoneNumber, String type, String follow, String status, String trackingID, String cookies, String ipAddress, String verify, String block, String messenger, String imgProfile, Integer lv2password) {
-        super();
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.type = type;
-        this.follow = follow;
-        this.status = status;
-        this.trackingID = trackingID;
-        this.cookies = cookies;
-        this.ipAddress = ipAddress;
-        this.verify = verify;
-        this.block = block;
-        this.messenger = messenger;
-        this.imgProfile = imgProfile;
-        this.lv2password = lv2password;
-    }
 
-    public User(String username, String password, String name, Integer age, String email, Integer phoneNumber, String type, String follow, String status, String trackingID, String cookies, String ipAddress, String verify, String block, String messenger, String message, String imgProfile, Integer lv2password) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.age = age;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.type = type;
-        this.follow = follow;
-        this.status = status;
-        this.trackingID = trackingID;
-        this.cookies = cookies;
-        this.ipAddress = ipAddress;
-        this.verify = verify;
-        this.block = block;
-        this.messenger = messenger;
-        this.message = message;
-        this.imgProfile = imgProfile;
-        this.lv2password = lv2password;
-    }
 
     public String getUsername() {
         return username;
@@ -167,11 +111,11 @@ public class User {
         this.email = email;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -255,11 +199,11 @@ public class User {
         this.imgProfile = imgProfile;
     }
 
-    public Integer getLv2password() {
+    public String getLv2password() {
         return lv2password;
     }
 
-    public void setLv2password(Integer lv2password) {
+    public void setLv2password(String lv2password) {
         this.lv2password = lv2password;
     }
 
@@ -269,5 +213,13 @@ public class User {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }
