@@ -38,6 +38,7 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
     RecyclerView recyclerView;
     List<ImageObject> mImages = new ArrayList<>();
     TextView tvName;
+    TextView tvDoB;
     ImageView ivLogout;
 
     public ProfileFragment() {
@@ -51,12 +52,14 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
         tvName = view.findViewById(R.id.name);
+        tvDoB = view.findViewById(R.id.dob);
         ivLogout = view.findViewById(R.id.iv_logout);
 
         SharedPreferences sharedPreferences = getContext()
                 .getSharedPreferences(Constant.USER, getContext().MODE_PRIVATE);
 
         tvName.setText(sharedPreferences.getString(Constant.NAME, "Jinny"));
+        tvDoB.setText(sharedPreferences.getString(Constant.DOB, "09/11/1999"));
 
         ivLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +84,11 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
         builder.setNegativeButton("Logout", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                SharedPreferences sharedPreferences = getContext()
+                        .getSharedPreferences(Constant.USER, getContext().MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(Constant.LOGIN, false);
+                editor.apply();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 getActivity().finish();
                 startActivity(intent);

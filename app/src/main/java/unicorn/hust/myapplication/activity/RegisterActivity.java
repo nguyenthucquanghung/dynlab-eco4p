@@ -87,9 +87,8 @@ public class RegisterActivity extends BaseActivity {
     }
 
     private void updateLabel() {
-        String myFormat = "dd/MM/yy"; //In which you need put here
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.TAIWAN);
-
         etAge.setText(sdf.format(myCalendar.getTime()));
     }
 
@@ -116,6 +115,8 @@ public class RegisterActivity extends BaseActivity {
                     Toast.LENGTH_SHORT).show();
 
         } else {
+            Toast.makeText(RegisterActivity.this,
+                    "Creating your account ...", Toast.LENGTH_LONG).show();
             sendRequest(
                     etUsername.getText().toString(),
                     etName.getText().toString(),
@@ -134,7 +135,7 @@ public class RegisterActivity extends BaseActivity {
             final String email,
             final String password,
             String password2,
-            String dateOfBirth,
+            final String dateOfBirth,
             String phoneNumber
     ) {
         final String json =
@@ -172,22 +173,22 @@ public class RegisterActivity extends BaseActivity {
                 final Gson gson = new Gson();
                 final RegisterResponse registerResponse = gson.fromJson(response.body().charStream(),
                         RegisterResponse.class);
-
+                RegisterActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getBaseContext(),
+                                registerResponse.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
                 if (registerResponse.getType().equals("done")) {
                     Intent intent = new Intent(RegisterActivity.this, VerifyActivity.class);
                     intent.putExtra("username", username);
                     intent.putExtra("password", password);
                     intent.putExtra("email", email);
+                    intent.putExtra("name", name);
+                    intent.putExtra("age", dateOfBirth);
                     RegisterActivity.this.finish();
                     RegisterActivity.this.startActivity(intent);
-                } else {
-                    RegisterActivity.this.runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(getBaseContext(),
-                                    registerResponse.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
                 }
             }
 

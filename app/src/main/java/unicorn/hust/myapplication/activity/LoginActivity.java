@@ -1,9 +1,12 @@
 package unicorn.hust.myapplication.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +19,8 @@ import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -49,17 +54,35 @@ public class LoginActivity extends BaseActivity {
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                LoginActivity.this.finish();
-                LoginActivity.this.startActivity(intent);
+                if (isInternetAvailable()) {
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    LoginActivity.this.finish();
+                    LoginActivity.this.startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this,
+                            "Network is not available", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate(edtUsername.getText().toString(), edtPassword.getText().toString());
+                if (isInternetAvailable()) {
+                    Toast.makeText(LoginActivity.this,
+                            "Logging in ...", Toast.LENGTH_LONG).show();
+                    validate(edtUsername.getText().toString(), edtPassword.getText().toString());
+                } else {
+                    Toast.makeText(LoginActivity.this,
+                            "Network is not available", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    public boolean isInternetAvailable() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
     private void findViewById() {
@@ -104,26 +127,28 @@ public class LoginActivity extends BaseActivity {
         final Gson gson = new Gson();
         final User user = gson.fromJson(response.body().charStream(), User.class);
 
+        LoginActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                Toast.makeText(getBaseContext(),
+                        (user.getType().equals("member"))?"Login successfully!":user.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
         if (user.getType().equals("member")) {
+
             SharedPreferences sharedPreferences = LoginActivity.this
                     .getSharedPreferences(Constant.USER, LoginActivity.this.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(Constant.LOGIN, true);
             editor.putString(Constant.USERNAME, user.getUsername());
             editor.putString(Constant.NAME, user.getName());
+            editor.putString(Constant.DOB, user.getAge());
             editor.apply();
 
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             LoginActivity.this.finish();
             LoginActivity.this.startActivity(intent);
-        } else {
-            LoginActivity.this.runOnUiThread(new Runnable() {
-                public void run() {
-                    Toast.makeText(getBaseContext(),
-                            user.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-
         }
     }
 }

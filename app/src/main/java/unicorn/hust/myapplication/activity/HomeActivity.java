@@ -17,7 +17,7 @@ public class HomeActivity extends BaseActivity {
     final Fragment profileFragment = new ProfileFragment();
     final Fragment locationFragment = new LocationFragment();
     final FragmentManager fragmentManager = getSupportFragmentManager();
-    Fragment activeFragment = locationFragment;
+    Fragment activeFragment = feedFragment;
 
     @Override
     protected int getLayoutId() {
@@ -34,16 +34,17 @@ public class HomeActivity extends BaseActivity {
 
         fragmentManager
                 .beginTransaction()
-                .add(R.id.home_container, feedFragment, "2")
-                .hide(feedFragment)
+                .add(R.id.home_container, feedFragment, "1")
                 .commit();
         fragmentManager
                 .beginTransaction()
                 .add(R.id.home_container, profileFragment, "3")
-                .hide(profileFragment).commit();
+                .hide(profileFragment)
+                .commit();
         fragmentManager
                 .beginTransaction()
-                .add(R.id.home_container, locationFragment, "1")
+                .add(R.id.home_container, locationFragment, "2")
+                .hide(locationFragment)
                 .commit();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView

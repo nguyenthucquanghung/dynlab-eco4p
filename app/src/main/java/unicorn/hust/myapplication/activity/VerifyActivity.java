@@ -1,6 +1,7 @@
 package unicorn.hust.myapplication.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -52,6 +53,8 @@ public class VerifyActivity extends BaseActivity {
                     Toast.makeText(VerifyActivity.this,
                             "Please enter your verification code!", Toast.LENGTH_SHORT).show();
                 } else {
+                    Toast.makeText(VerifyActivity.this,
+                            "Verifying...", Toast.LENGTH_LONG).show();
                     final String json =
                             "{\"username\":\"" + getIntent().getExtras().getString("username") +
                                     "\",\"password\":\"" + getIntent().getExtras().getString("password") +
@@ -71,6 +74,8 @@ public class VerifyActivity extends BaseActivity {
                                 "\",\"password\":\"" + getIntent().getExtras().getString("password") +
                                 "\",\"email\":\"" + getIntent().getExtras().getString("email") +
                                 "\"}";
+                Toast.makeText(VerifyActivity.this,
+                        "Sending code to your email ...", Toast.LENGTH_LONG).show();
                 resendCode(json);
             }
         });
@@ -139,27 +144,27 @@ public class VerifyActivity extends BaseActivity {
                 final RegisterResponse registerResponse = gson.fromJson(response.body().charStream(),
                         RegisterResponse.class);
 
+                VerifyActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getBaseContext(),
+                                registerResponse.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 if (registerResponse.getType().equals("Done")) {
-                    VerifyActivity.this.runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(getBaseContext(),
-                                    registerResponse.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    SharedPreferences sharedPreferences = VerifyActivity.this
+                            .getSharedPreferences(Constant.USER, VerifyActivity.this.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(Constant.LOGIN, true);
+                    editor.putString(Constant.USERNAME, getIntent().getExtras().getString("username"));
+                    editor.putString(Constant.NAME, getIntent().getExtras().getString("name"));
+                    editor.putString(Constant.DOB, getIntent().getExtras().getString("age"));
+                    editor.apply();
 
                     Intent intent = new Intent(VerifyActivity.this, HomeActivity.class);
                     VerifyActivity.this.finish();
                     VerifyActivity.this.startActivity(intent);
-                } else {
-                    VerifyActivity.this.runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(getBaseContext(),
-                                    registerResponse.getMessage(),
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
                 }
             }
         });
@@ -170,4 +175,5 @@ public class VerifyActivity extends BaseActivity {
         btnVerify = findViewById(R.id.btn_verify);
         tvResendCode = findViewById(R.id.tv_resend_code);
     }
+
 }

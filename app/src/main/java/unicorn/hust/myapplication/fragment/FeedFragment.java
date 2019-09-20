@@ -1,6 +1,7 @@
 package unicorn.hust.myapplication.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import java.util.List;
 import unicorn.hust.myapplication.R;
 import unicorn.hust.myapplication.adapter.PostListAdapter;
 import unicorn.hust.myapplication.model.PostObject;
+import unicorn.hust.myapplication.utils.Constant;
 
 public class FeedFragment extends Fragment {
 
@@ -39,9 +41,12 @@ public class FeedFragment extends Fragment {
 
     private void setupRecyclerView() {
         // Mock data
+        SharedPreferences sharedPreferences = getContext()
+                .getSharedPreferences(Constant.USER, getContext().MODE_PRIVATE);
+        String name = sharedPreferences.getString(Constant.NAME, "Jinny");
         mPosts = new ArrayList<>();
         PostObject fakeObject = new PostObject(R.drawable.img00_round, R.drawable.mock_data,
-                "Jinny", "Gateway International School - 15:30");
+                name, "Trường Mầm Non Láng Thượng - 15:30");
         mPosts.add(fakeObject);
         mPosts.add(fakeObject);
         mPosts.add(fakeObject);

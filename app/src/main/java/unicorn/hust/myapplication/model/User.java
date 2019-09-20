@@ -16,7 +16,7 @@ public class User {
     private String name;
     @SerializedName("age")
     @Expose
-    private Integer age;
+    private String age;
     @SerializedName("email")
     @Expose
     private String email;
@@ -95,11 +95,11 @@ public class User {
         this.name = name;
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

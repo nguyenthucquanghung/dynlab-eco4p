@@ -42,6 +42,12 @@
     <string name="verify">Verify</string>
     <string name="enter_code">Enter code</string>
     <string name="send_code_again">Send code again</string>
+    <string name="diary">Diary</string>
+    <string name="icon">Icon</string>
+    <string name="_16_6">16/6</string>
+    <string name="_28_6">28/6</string>
+    <string name="_16_7">16/7</string>
+    <string name="_22_8">22/8</string>
 
 
 </resources>

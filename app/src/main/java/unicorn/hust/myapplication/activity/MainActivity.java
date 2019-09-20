@@ -18,8 +18,8 @@ public class MainActivity extends BaseActivity {
     protected void setupUI() {
         //check if this device has been logged in
         SharedPreferences sharedPref = this.getSharedPreferences(Constant.USER, MainActivity.this.MODE_PRIVATE);
-        String userID = sharedPref.getString(Constant.LOGIN, null);
-        if (userID == null) {
+        boolean loginState = sharedPref.getBoolean(Constant.LOGIN, false);
+        if (!loginState) {
             Intent intent = new Intent(this, LoginActivity.class);
             this.startActivity(intent);
             this.finish();
