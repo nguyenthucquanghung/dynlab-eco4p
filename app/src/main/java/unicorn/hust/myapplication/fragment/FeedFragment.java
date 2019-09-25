@@ -1,13 +1,18 @@
 package unicorn.hust.myapplication.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -33,10 +38,15 @@ public class FeedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
-        mRecyclerView = view.findViewById(R.id.rv_posts);
+        
+        findViewById(view);
 
         setupRecyclerView();
         return view;
+    }
+
+    private void findViewById(View view) {
+        mRecyclerView = view.findViewById(R.id.rv_posts);
     }
 
     private void setupRecyclerView() {

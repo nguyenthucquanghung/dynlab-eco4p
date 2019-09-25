@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">ECO4P</string>
     <string name="login">Log in</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -48,6 +48,25 @@
     <string name="_28_6">28/6</string>
     <string name="_16_7">16/7</string>
     <string name="_22_8">22/8</string>
+    <string name="messenger">Messenger</string>
+    <string name="notification">Notification</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account_settings">Account settings</string>
+    <string name="log_out">Log out</string>
+    <string name="change_password">Change password</string>
+    <string name="text">Text</string>
+    <string name="new_name">New name</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_name">Edit name</string>
+    <string name="your_password">Your password</string>
+    <string name="change_dob">Change date of birth</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="current_password">Current password</string>
+    <string name="comming_soon">Comming Soon! :D</string>
 
 
 </resources>

@@ -34,7 +34,7 @@ import unicorn.hust.myapplication.utils.Constant;
 import unicorn.hust.myapplication.R;
 
 public class LoginActivity extends BaseActivity {
-
+    private static final String TAG = "hehe";
     private OkHttpClient client = new OkHttpClient();
     Button btnLogin;
     TextView tvRegister;
@@ -117,6 +117,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response)
                     throws IOException {
+                Log.d(TAG, "onResponse: " + response.body().toString());
                 checkResponse(response);
             }
 
@@ -144,6 +145,7 @@ public class LoginActivity extends BaseActivity {
             editor.putString(Constant.USERNAME, user.getUsername());
             editor.putString(Constant.NAME, user.getName());
             editor.putString(Constant.DOB, user.getAge());
+            editor.putString(Constant.PASSWORD, user.getPassword());
             editor.apply();
 
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

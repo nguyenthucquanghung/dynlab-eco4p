@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_notifications"
+        android:icon="@drawable/ic_notifications_grey"
+        android:title="@string/notification"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_messenger"
+        android:icon="@drawable/ic_message_grey"
+        android:title="@string/messenger"
+        app:showAsAction="always" />
+</menu>

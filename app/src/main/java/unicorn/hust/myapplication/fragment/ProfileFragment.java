@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,8 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import unicorn.hust.myapplication.R;
+import unicorn.hust.myapplication.activity.HomeActivity;
 import unicorn.hust.myapplication.activity.LoginActivity;
 import unicorn.hust.myapplication.activity.MainActivity;
+import unicorn.hust.myapplication.activity.SettingsActivity;
 import unicorn.hust.myapplication.adapter.ImageGridListAdapter;
 import unicorn.hust.myapplication.model.ImageObject;
 import unicorn.hust.myapplication.utils.AutoFitGridLayoutManager;
@@ -40,6 +43,7 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
     TextView tvName;
     TextView tvDoB;
     ImageView ivLogout;
+    TextView tvAccountSettings;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -50,11 +54,13 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        recyclerView = view.findViewById(R.id.recyclerView);
-        tvName = view.findViewById(R.id.name);
-        tvDoB = view.findViewById(R.id.dob);
-        ivLogout = view.findViewById(R.id.iv_logout);
 
+        findViewById(view);
+        setupUI();
+        return view;
+    }
+
+    private void setupUI() {
         SharedPreferences sharedPreferences = getContext()
                 .getSharedPreferences(Constant.USER, getContext().MODE_PRIVATE);
 
@@ -67,9 +73,25 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
                 showAlertDialog();
             }
         });
+        tvAccountSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                getActivity().finish();
+                startActivity(intent);
+            }
+        });
         setUpRecyclerView();
-        return view;
     }
+
+    private void findViewById(View view) {
+        recyclerView = view.findViewById(R.id.recyclerView);
+        tvName = view.findViewById(R.id.name);
+        tvDoB = view.findViewById(R.id.dob);
+        ivLogout = view.findViewById(R.id.iv_logout);
+        tvAccountSettings = view.findViewById(R.id.tv_account_settings);
+    }
+
     public void showAlertDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("ECO4P");
@@ -98,6 +120,7 @@ public class ProfileFragment extends Fragment implements ImageGridListAdapter.It
         alertDialog.show();
 
     }
+
     private void setUpRecyclerView() {
 //         Mock data
         mImages.add(new ImageObject(R.drawable.img01));

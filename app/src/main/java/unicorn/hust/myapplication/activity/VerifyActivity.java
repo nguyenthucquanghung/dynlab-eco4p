@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -160,6 +161,7 @@ public class VerifyActivity extends BaseActivity {
                     editor.putString(Constant.USERNAME, getIntent().getExtras().getString("username"));
                     editor.putString(Constant.NAME, getIntent().getExtras().getString("name"));
                     editor.putString(Constant.DOB, getIntent().getExtras().getString("age"));
+                    editor.putString(Constant.PASSWORD, getIntent().getExtras().getString("password"));
                     editor.apply();
 
                     Intent intent = new Intent(VerifyActivity.this, HomeActivity.class);

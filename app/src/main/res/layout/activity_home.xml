@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.HomeActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/dark_grey"
+        android:background="@color/white">
+    </android.support.v7.widget.Toolbar>
 
     <include
         layout="@layout/content_home"
@@ -17,8 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        app:itemIconTint="@color/black"
+        app:itemIconTint="@color/dark_grey"
         app:itemTextColor="@color/black"
+        app:labelVisibilityMode="unlabeled"
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_nav_menu_home" />
 
