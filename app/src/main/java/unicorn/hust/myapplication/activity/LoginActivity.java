@@ -136,7 +136,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        if (user.getType().equals("member")) {
+        if (user.getType().equals("member") || user.getType().equals("admin")) {
 
             SharedPreferences sharedPreferences = LoginActivity.this
                     .getSharedPreferences(Constant.USER, LoginActivity.this.MODE_PRIVATE);

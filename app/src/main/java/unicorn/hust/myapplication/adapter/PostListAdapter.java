@@ -1,24 +1,19 @@
 package unicorn.hust.myapplication.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 import unicorn.hust.myapplication.R;
 import unicorn.hust.myapplication.model.PostObject;
 import unicorn.hust.myapplication.utils.Constant;
@@ -48,7 +43,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mPosts.size();
+        return (mPosts == null)? 0:mPosts.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -56,6 +51,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         ImageView ivPhoto;
         TextView tvUsername;
         TextView tvLocationAndTime;
+        TextView tvContent;
 
         PostObject postObject;
 
@@ -65,15 +61,32 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
             ivPhoto = itemView.findViewById(R.id.iv_images);
             tvUsername = itemView.findViewById(R.id.tv_username);
             tvLocationAndTime = itemView.findViewById(R.id.tv_location);
-
+            tvContent = itemView.findViewById(R.id.tv_content);
         }
 
         void setData(PostObject post) {
             this.postObject = post;
+
+            if (post.getBase64Image().equals(""))
+                ivPhoto.setVisibility(View.GONE);
+            else {
+                byte[] decodedString = Base64.decode(post.getBase64Image().replaceAll(Constant.NEW_LINE_REPLACEMENT, "\n"), Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                ivPhoto.setImageBitmap(decodedByte);
+                ivPhoto.setMaxHeight(decodedByte.getHeight());
+                ivPhoto.setVisibility(View.VISIBLE);
+
+            }
             ivAvatar.setImageResource(post.getAvatarId());
-//            ivPhoto.setImageResource(post.getImageId());
             tvUsername.setText(post.getUsername());
             tvLocationAndTime.setText(post.getLocationWithTime());
+            tvContent.setText(postObject.getContent().replaceAll(Constant.NEW_LINE_REPLACEMENT, "\n"));
         }
+    }
+
+    public void updateItems(List<PostObject> postObjects) {
+        mPosts.clear();
+        mPosts.addAll(postObjects);
+        this.notifyDataSetChanged();
     }
 }

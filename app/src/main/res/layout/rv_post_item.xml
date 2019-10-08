@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -44,13 +45,21 @@
                 />
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_more_dots"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"/>
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/on_science_class"
+            android:layout_margin="10dp"
+            android:textColor="@color/black"/>
 
         <ImageView
             android:id="@+id/iv_images"
@@ -59,6 +68,10 @@
             android:layout_gravity="bottom"
             android:src="@drawable/mock_data"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_grey"/>
     </LinearLayout>
 
 </LinearLayout>

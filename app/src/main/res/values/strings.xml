@@ -67,6 +67,11 @@
     <string name="confirm_new_password">Confirm new password</string>
     <string name="current_password">Current password</string>
     <string name="comming_soon">Comming Soon! :D</string>
+    <string name="post">POST</string>
+    <string name="on_science_class">On science class</string>
+    <string name="there_re_no_post_here">There is no post here!</string>
+    <string name="change_avatar">Change avatar</string>
+    <string name="change_your_avatar">Change your avatar</string>
 
 
 </resources>

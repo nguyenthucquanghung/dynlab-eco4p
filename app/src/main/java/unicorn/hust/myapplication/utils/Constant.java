@@ -9,6 +9,7 @@ public class Constant {
     public static final String NAME = "name";
     public static final String DOB = "dateOfBirth";
     public static final String PASSWORD = "password";
+    public static final int EMPTY_IMAGE = 9293;
 
     public static final MediaType JSON
             = MediaType.get("application/json; charset=utf-8");
@@ -19,5 +20,8 @@ public class Constant {
     public static final String URL_RESEND = "https://script.google.com/macros/s/AKfycbwm6F4cZZ4clelJI5bVtP7lyBX8lkR92fcPnzRy6FklGD1O2ltM/exec";
     public static final String URL_UPDATE_PROFILE = "https://script.google.com/macros/s/AKfycbwumV0utjjdBY3xEMYcUVSRyFFzyptKdBHHjV4ZjqO9xHrvUtI/exec";
     public static final String URL_CHANGE_PASSWORD = "https://script.google.com/macros/s/AKfycbzmaw5_boZCrcc7Fiig3f38u7ReG6r26p4wTEFsTBJu8c33-Rw/exec";
+    public static final String URL_GET_POSTS = "http://104.215.186.45:6996/api/getStatus";
+    public static final String URL_POST_STATUS = "http://104.215.186.45:6996/api/postStatus";
+    public static final String NEW_LINE_REPLACEMENT = "new_line_rplmt";
 
 }

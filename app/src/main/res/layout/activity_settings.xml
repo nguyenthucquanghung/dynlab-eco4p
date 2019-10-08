@@ -6,97 +6,156 @@
     android:layout_height="match_parent"
     tools:context=".activity.SettingsActivity">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_name"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@color/light_grey"
-        app:cardCornerRadius="5dp">
-
+        android:layout_above="@id/btn_change_password"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentTop="true">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/tv_name_label"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/name" />
+                android:layout_margin="20dp"
+                android:background="@color/light_grey"
+                app:cardCornerRadius="5dp">
 
-            <EditText
-                android:id="@+id/et_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_name_label"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:cursorVisible="false"
-                android:hint="@string/name"
-                android:inputType="none" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/iv_edit_name"
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tv_name_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_name_label"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/white"
+                        android:cursorVisible="false"
+                        android:hint="@string/name"
+                        android:inputType="none" />
+
+                    <ImageView
+                        android:id="@+id/iv_edit_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_name_label"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="@string/name"
+                        android:src="@drawable/ic_edit" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_dob"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_name_label"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@string/name"
-                android:src="@drawable/ic_edit" />
+                android:layout_below="@id/cv_name"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/light_grey"
+                app:cardCornerRadius="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_dob_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date_of_birth" />
+
+                    <EditText
+                        android:id="@+id/et_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_dob_label"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/white"
+                        android:cursorVisible="false"
+                        android:hint="@string/date_of_birth"
+                        android:inputType="none" />
+
+                    <ImageView
+                        android:id="@+id/iv_edit_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_dob_label"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="@string/name"
+                        android:src="@drawable/ic_edit" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_avatar"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cv_dob"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/light_grey"
+                app:cardCornerRadius="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_avatar_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/change_avatar" />
+
+                    <ImageView
+                        android:id="@+id/iv_avatar"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@id/tv_avatar_label"
+                        android:src="@drawable/img00_round"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btn_change_avatar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/iv_avatar"
+                        android:text="@string/change_your_avatar"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="20dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:background="@drawable/bordered_circle_rectangle"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cv_dob"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/cv_name"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/light_grey"
-        app:cardCornerRadius="5dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/tv_dob_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date_of_birth" />
-
-            <EditText
-                android:id="@+id/et_dob"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_dob_label"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:cursorVisible="false"
-                android:hint="@string/date_of_birth"
-                android:inputType="none" />
-
-            <ImageView
-                android:id="@+id/iv_edit_dob"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_dob_label"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@string/name"
-                android:src="@drawable/ic_edit" />
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </ScrollView>
 
     <Button
         android:id="@+id/btn_change_password"

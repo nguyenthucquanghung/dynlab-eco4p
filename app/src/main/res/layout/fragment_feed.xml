@@ -3,17 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".fragment.FeedFragment">
 
-        <LinearLayout
-            android:layout_marginTop="?attr/actionBarSize"
-            android:id="@+id/fragment_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical">
 
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/layout_swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -22,12 +27,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <LinearLayout
-                        android:baselineAligned="true"
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
                         android:layout_marginTop="6dp"
                         android:layout_marginBottom="6dp"
+                        android:baselineAligned="true"
                         android:orientation="horizontal">
 
                         <RelativeLayout
@@ -158,11 +164,11 @@
                             android:orientation="vertical">
 
                             <RelativeLayout
-                                android:focusable="true"
-                                android:focusableInTouchMode="true"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp">
+                                android:layout_marginTop="5dp"
+                                android:focusable="true"
+                                android:focusableInTouchMode="true">
 
                                 <ImageView
                                     android:id="@+id/iv_avatar"
@@ -173,18 +179,37 @@
                                     android:src="@drawable/img00_round" />
 
                                 <EditText
-                                    android:layout_width="match_parent"
+                                    android:id="@+id/et_post_content"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="70dp"
                                     android:layout_marginEnd="10dp"
+                                    android:layout_toStartOf="@id/tv_post"
                                     android:layout_toEndOf="@id/iv_avatar"
                                     android:hint="@string/what_s_on_your_mind"
                                     android:padding="10dp"
                                     android:textSize="15sp" />
 
+                                <TextView
+                                    android:id="@+id/tv_post"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:clickable="true"
+                                    android:focusable="false"
+                                    android:text="@string/post" />
+
                             </RelativeLayout>
+
+                            <ImageView
+                                android:id="@+id/iv_pending_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
 
 
                             <LinearLayout
+                                android:layout_marginTop="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
@@ -199,7 +224,9 @@
                                         android:id="@+id/iv_add_images"
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
+                                        android:clickable="true"
                                         android:contentDescription="@string/icon"
+                                        android:focusable="false"
                                         android:src="@drawable/ic_images" />
 
                                     <TextView
@@ -246,18 +273,33 @@
                         </LinearLayout>
 
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_empty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/there_re_no_post_here"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_posts"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
                         android:scrollbars="vertical"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
                 </LinearLayout>
 
             </android.support.v4.widget.NestedScrollView>
 
-        </LinearLayout>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    </LinearLayout>
 
 
 </FrameLayout>

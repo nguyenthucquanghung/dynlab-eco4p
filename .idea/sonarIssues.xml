@@ -118,7 +118,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/model/Feed.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/model/ImageObject.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/unicorn/hust/myapplication/model/Post.java">
           <value>
             <set />
           </value>
